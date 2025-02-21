@@ -22,16 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: frontend/pnpm-lock.json
 
       - name: Install frontend dependencies
-        run: npm ci
+        run: pnpm ci
         working-directory: frontend
 
       - name: Build frontend
-        run: npm run build
+        run: pnpm run build
         working-directory: frontend
-        
+
   backend:
     name: Build Backend
     runs-on: ubuntu-latest
@@ -45,6 +45,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Build backend
-        run: mvn clean package
+        run: ./gradlew build
         working-directory: backend
