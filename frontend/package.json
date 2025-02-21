@@ -19,5 +19,6 @@
       "@parcel/watcher",
       "esbuild"
     ]
-  }
+  },
+  "packageManager": "^pnpm@10.4.1"
 }
