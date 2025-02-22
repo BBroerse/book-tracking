@@ -27,7 +27,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache-dependency-path: frontend/pnpm-lock.json
+          cache-dependency-path: frontend/pnpm-lock.yaml
+          cache: pnmp
 
       - name: Install frontend dependencies
         run: pnpm install
