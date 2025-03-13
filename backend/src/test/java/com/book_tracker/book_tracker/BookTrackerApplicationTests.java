@@ -1,4 +1,4 @@
-package com.booktracker.book_tracker;
+package com.book_tracker.book_tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

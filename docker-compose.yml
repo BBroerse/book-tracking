@@ -1,12 +1,40 @@
 services:
+  db:
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: book_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  backend:
+    image: book-tracker:0.0.1-SNAPSHOT
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/book_tracker
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/src
+
   frontend:
     build: ./frontend
+    env_file:
+      - ./frontend/.env
     ports:
       - "3000:3000"
-      - "24678:24678"
     volumes:
       - ./frontend:/src
       - node_modules:/src/node_modules
 
 volumes:
   node_modules:
+  postgres_data:

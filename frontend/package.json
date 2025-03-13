@@ -19,5 +19,14 @@
       "@parcel/watcher",
       "esbuild"
     ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "10.0.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^16.0.0",
+    "prettier": "3.5.2",
+    "typescript-eslint": "^8.24.1"
   }
 }
