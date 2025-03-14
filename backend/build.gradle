@@ -25,6 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'net.datafaker:datafaker:2.4.2'
 
+	// https://mvnrepository.com/artifact/io.github.wimdeblauwe/error-handling-spring-boot-starter
+	implementation 'io.github.wimdeblauwe:error-handling-spring-boot-starter:4.5.0'
+
+
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
 

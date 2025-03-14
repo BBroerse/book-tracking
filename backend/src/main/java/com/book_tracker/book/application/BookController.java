@@ -1,11 +1,15 @@
 package com.book_tracker.book.application;
 
+import com.book_tracker.book.application.dto.BookRequestDto;
 import com.book_tracker.book.application.dto.BookResponseDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("/books")
+@Validated
 public class BookController {
 
     private final BookService bookService;
@@ -15,16 +19,11 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<BookResponseDto> getBook(
-            @RequestParam(required = false) Integer isbn,
-            @RequestParam(required = false) String title
-    ) {
-        if (isbn != null) {
-            return ResponseEntity.ok(bookService.getBookByIsbn(isbn));
-        } else if (title != null) {
-            return ResponseEntity.ok(bookService.getBookByTitle(title));
+    public ResponseEntity<?> getBook(@Valid BookRequestDto bookRequest) {
+        if (bookRequest.isbn() != null) {
+            return ResponseEntity.ok(bookService.getBookByIsbn(bookRequest.isbn()));
         } else {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.ok(bookService.getBookByTitle(bookRequest.title()));
         }
     }
 }

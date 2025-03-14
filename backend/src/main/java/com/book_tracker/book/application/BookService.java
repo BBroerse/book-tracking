@@ -14,8 +14,8 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public BookResponseDto getBookByIsbn(int isbn) {
-        Book book = bookRepository.findByIsbn(isbn).orElseThrow(BookNotFoundException::new);
+    public BookResponseDto getBookByIsbn(String isbn) {
+        Book book = bookRepository.findByIsbn(Integer.parseInt(isbn)).orElseThrow(BookNotFoundException::new);
         return mapToResponseDto(book);
     }
 
