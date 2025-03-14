@@ -57,3 +57,11 @@ jobs:
       - name: Build backend
         run: ./gradlew build
         working-directory: backend
+
+      - name: Run unit tests
+        run: ./gradlew test --tests '*unit*'
+        working-directory: backend
+
+      - name: Run integration tests
+        run: ./gradlew test --tests '*integration*'
+        working-directory: backend

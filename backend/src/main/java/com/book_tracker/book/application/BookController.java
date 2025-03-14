@@ -1,7 +1,6 @@
 package com.book_tracker.book.application;
 
 import com.book_tracker.book.application.dto.BookRequestDto;
-import com.book_tracker.book.application.dto.BookResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

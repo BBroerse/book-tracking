@@ -5,10 +5,10 @@ import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = AtLeastOneNotNullValidator.class)
+@Constraint(validatedBy = OnlyOneNotNullValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AtLeastOneNotNull {
+public @interface OnlyOneNotNull {
     String message() default "Either 'isbn' or 'title' must be provided";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

@@ -4,13 +4,17 @@ import com.book_tracker.book.application.dto.BookRequestDto;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class AtLeastOneNotNullValidator implements ConstraintValidator<AtLeastOneNotNull, BookRequestDto> {
+public class OnlyOneNotNullValidator implements ConstraintValidator<OnlyOneNotNull, BookRequestDto> {
 
     @Override
-    public void initialize(AtLeastOneNotNull constraintAnnotation) {}
+    public void initialize(OnlyOneNotNull constraintAnnotation) {}
 
     @Override
     public boolean isValid(BookRequestDto bookRequest, ConstraintValidatorContext context) {
+        if (bookRequest.isbn() != null && bookRequest.title() != null) {
+            return false;
+        }
+
         return bookRequest.isbn() != null || bookRequest.title() != null;
     }
 }

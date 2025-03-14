@@ -15,23 +15,30 @@ import java.util.stream.IntStream;
 @Profile("dev")
 public class DatabaseSeeder implements CommandLineRunner {
 
+    private static final int DEFAULT_AMOUNT_OF_BOOKS = 100;
+    private final int AMOUNT_OF_BOOKS;
+    
     private final BookRepository bookRepository;
     private final Faker faker = new Faker(new Random());
 
     public DatabaseSeeder(BookRepository bookRepository) {
+        this(bookRepository, DEFAULT_AMOUNT_OF_BOOKS);
+    }
+
+    public DatabaseSeeder(BookRepository bookRepository, int AMOUNT_OF_BOOKS) {
         this.bookRepository = bookRepository;
+        this.AMOUNT_OF_BOOKS = AMOUNT_OF_BOOKS;
     }
 
     @Override
     @Transactional
     public void run(String... args) {
         if (bookRepository.count() == 0) {
-            int AMOUNT_OF_TEST_BOOKS = 100;
-            generateBooks(AMOUNT_OF_TEST_BOOKS);
+            generateBooks(AMOUNT_OF_BOOKS);
         }
     }
 
-    private void generateBooks(int count) {
+    public void generateBooks(int count) {
         IntStream.range(0, count).forEach(i -> {
             Book book = new Book();
 

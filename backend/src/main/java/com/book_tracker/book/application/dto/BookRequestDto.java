@@ -1,9 +1,9 @@
 package com.book_tracker.book.application.dto;
 
-import com.book_tracker.book.application.validation.AtLeastOneNotNull;
+import com.book_tracker.book.application.validation.OnlyOneNotNull;
 import jakarta.validation.constraints.Pattern;
 
-@AtLeastOneNotNull
+@OnlyOneNotNull
 public record BookRequestDto(
         String title,
 
