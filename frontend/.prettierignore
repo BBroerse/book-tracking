@@ -1,0 +1,11 @@
+build
+coverage
+.nuxt
+.output
+.e2e
+.idea
+.tmp
+public
+dist
+node_modules
+pnpm-lock.yaml
