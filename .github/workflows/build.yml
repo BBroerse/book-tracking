@@ -48,6 +48,10 @@ jobs:
 #        run: ./gradlew
 #        working-directory: backend
 
+      - name: Build backend
+        run: ./gradlew build
+        working-directory: backend
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
