@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 public record BookRequestDto(
         String title,
 
-        @Pattern(regexp = "^[0-9]*$", message = "ISBN must be a number")
+        @Pattern(regexp = "^\\d*$", message = "ISBN must be a number")
         String isbn
 ) { }
 

@@ -12,7 +12,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @Profile("dev")
-public class DatabaseSeederTest {
+class DatabaseSeederTest {
 
     private BookRepository bookRepository;
     private DatabaseSeeder databaseSeeder;

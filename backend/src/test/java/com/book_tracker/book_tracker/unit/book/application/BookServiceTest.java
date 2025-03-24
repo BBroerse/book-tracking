@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class BookServiceTest {
+class BookServiceTest {
 
     private BookRepository bookRepository;
     private BookService bookService;

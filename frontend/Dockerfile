@@ -10,7 +10,7 @@ WORKDIR /src
 FROM base AS build
 
 COPY --link package.json ./
-RUN npm install
+RUN npm install --ignore-scripts
 
 # Run
 FROM base

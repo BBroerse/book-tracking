@@ -7,9 +7,6 @@ import jakarta.validation.ConstraintValidatorContext;
 public class OnlyOneNotNullValidator implements ConstraintValidator<OnlyOneNotNull, BookRequestDto> {
 
     @Override
-    public void initialize(OnlyOneNotNull constraintAnnotation) {}
-
-    @Override
     public boolean isValid(BookRequestDto bookRequest, ConstraintValidatorContext context) {
         if (bookRequest.isbn() != null && bookRequest.title() != null) {
             return false;
