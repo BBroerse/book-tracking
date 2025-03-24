@@ -11,6 +11,52 @@ on:
       - develop
 
 jobs:
+  lint:
+    name: Lint and Static Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+#      - name: Install pnpm
+#        uses: pnpm/action-setup@v4
+#        with:
+#          version: 10
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#          cache-dependency-path: frontend/pnpm-lock.yaml
+#          cache: pnpm
+#
+#      - name: Install frontend dependencies
+#        run: pnpm install
+#        working-directory: frontend
+#
+#      - name: Lint frontend
+#        run: pnpm run lint
+#        working-directory: frontend
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # step for linting backend code
+#      - name: Lint backend
+#        run: ./gradlew
+#        working-directory: backend
+
+      - name: Build backend
+        run: ./gradlew build
+        working-directory: backend
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   frontend:
     name: Build frontend
     runs-on: ubuntu-latest
@@ -27,8 +73,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache-dependency-path: frontend/pnpm-lock.json
-          cache: 'pnpm'
+          cache-dependency-path: frontend/pnpm-lock.yaml
+          cache: pnpm
 
       - name: Install frontend dependencies
         run: pnpm install
@@ -55,5 +101,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Build backend
-        run: ./gradlew build
+        run: ./gradlew build -x test
+        working-directory: backend
+
+      - name: Run unit tests
+        run: ./gradlew test --tests '*unit*'
+        working-directory: backend
+
+      - name: Run integration tests
+        run: ./gradlew test --tests '*integration*'
         working-directory: backend

@@ -1,4 +1,4 @@
-package com.booktracker.book_tracker;
+package com.book_tracker.book_tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,7 @@ class BookTrackerApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// This test is empty because it is only used to check if the application context loads correctly
 	}
 
 }

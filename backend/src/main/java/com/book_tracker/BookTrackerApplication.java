@@ -1,4 +1,4 @@
-package com.booktracker.book_tracker;
+package com.book_tracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
